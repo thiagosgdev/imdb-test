@@ -7,10 +7,11 @@ import {
   ApiTooManyRequestsResponse,
 } from '@nestjs/swagger';
 
+import { Public } from '../../../../shared/decorators/public.decorator';
 import { CreateUserParamsDTO } from '../../dto/createUserParams.dto';
 import { UserDTO } from '../../dto/user.dto';
 import { CreateUserService } from './createUser.service';
-
+@Public()
 @ApiTags('users')
 @Controller()
 export class CreateUserController {

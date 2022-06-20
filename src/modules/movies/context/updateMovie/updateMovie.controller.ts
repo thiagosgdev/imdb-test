@@ -1,17 +1,24 @@
-import { Body, Controller, HttpException, Post, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  Param,
+  Patch,
+  Request,
+} from '@nestjs/common';
 import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 import { RequestDTO } from '../../../../shared/dto/request.dto';
-import { CreateMovieParamsDTO } from '../../dto/createMovieParams.dto';
 import { MovieDTO } from '../../dto/movie.dto';
-import { CreateMovieService } from './createMovie.service';
+import { UpdateMovieParamsDTO } from '../../dto/updateMovieParams.dto';
+import { UpdateMovieService } from './updateMovie.service';
 
 @ApiTags('movies')
 @Controller()
-export class CreateMovieController {
-  constructor(private createMovieService: CreateMovieService) {}
+export class UpdateMovieController {
+  constructor(private updateMovieService: UpdateMovieService) {}
 
-  @Post()
+  @Patch('/:id')
   @ApiOkResponse({
     type: MovieDTO,
   })
@@ -20,10 +27,15 @@ export class CreateMovieController {
   })
   public async handle(
     @Request() req: RequestDTO,
-    @Body() data: CreateMovieParamsDTO,
+    @Param('id') movieId: string,
+    @Body() data: UpdateMovieParamsDTO,
   ) {
     try {
-      return await this.createMovieService.execute(req.user.role, data);
+      return await this.updateMovieService.execute(
+        req.user.role,
+        movieId,
+        data,
+      );
     } catch (error) {
       throw new HttpException(
         error.response.message,

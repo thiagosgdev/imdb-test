@@ -15,6 +15,7 @@ import { SigninController } from './context/signIn/signin.controller';
 import { UpdateUserService } from './context/updateUser/updateUser.service';
 import { UpdateUserController } from './context/updateUser/updateUser.controller';
 import { DeleteUserService } from './context/deleteUser/deleteUser.service';
+import { DeleteUserController } from './context/deleteUser/deleteUser.controller';
 
 @Module({
   imports: [
@@ -35,7 +36,7 @@ import { DeleteUserService } from './context/deleteUser/deleteUser.service';
     CreateUserController,
     SigninController,
     UpdateUserController,
-    DeleteUserService,
+    DeleteUserController,
   ],
   exports: [TypeOrmModule],
 })

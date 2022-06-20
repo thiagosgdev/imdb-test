@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import MockDate from 'mockdate';
-import { ConflictException, UnauthorizedException } from '@nestjs/common';
+import { UnauthorizedException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 
