@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { RouterModule } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import envConfig from './configs/env';
 import { UserModule } from './modules/users/user.module';
+import { routerConfig } from './configs/routes';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { UserModule } from './modules/users/user.module';
       ttl: 60,
       limit: 20,
     }),
+    RouterModule.register(routerConfig),
+
     UserModule,
   ],
   controllers: [],

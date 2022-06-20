@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import MockDate from 'mockdate';
 import { BadRequestException, ConflictException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 import { CreateUserService } from './createUser.service';
 import { User } from '../../../../shared/entities/user.entity';
@@ -10,6 +11,7 @@ import {
   mockUser,
 } from '../../../../shared/tests/user.mock';
 import { UserDTO } from '../../dto/user.dto';
+import { JwtProvider } from '../../../../shared/providers/EncryptProvider/jwt.provider';
 
 const mockUserRepository = {
   findOne: (): Promise<UserDTO | null> => {
@@ -18,6 +20,15 @@ const mockUserRepository = {
   save: () => {
     return Promise.resolve(mockUser);
   },
+};
+
+const mockHashProvider = {
+  compareHash: jest.fn(() => {
+    Promise.resolve(false);
+  }),
+  createHash: jest.fn(() => {
+    Promise.resolve('any_hashed');
+  }),
 };
 
 describe('Create User Service', () => {
@@ -33,6 +44,22 @@ describe('Create User Service', () => {
           provide: getRepositoryToken(User),
           useValue: mockUserRepository,
         },
+        {
+          provide: JwtService,
+          useValue: {
+            sign: jest.fn(() => {
+              null;
+            }),
+          },
+        },
+        {
+          provide: 'HASH_PROVIDER',
+          useValue: mockHashProvider,
+        },
+        {
+          provide: 'ENCRYPTER_PROVIDER',
+          useClass: JwtProvider,
+        },
       ],
     }).compile();
 
@@ -44,7 +71,9 @@ describe('Create User Service', () => {
   });
   it('Should return the user created on save() success', async () => {
     const response = await service.execute(mockCreateUserParamsDTO());
-    expect(response).toHaveProperty('id');
+    expect(response).toHaveProperty('user');
+    expect(response).toHaveProperty('token');
+    expect(response).toHaveProperty('refreshToken');
   });
 
   it('Should return a ConflicException if the e-mail already exists', async () => {

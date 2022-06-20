@@ -12,7 +12,7 @@ import { UserDTO } from '../../dto/user.dto';
 import { CreateUserService } from './createUser.service';
 
 @ApiTags('users')
-@Controller('/users')
+@Controller()
 export class CreateUserController {
   constructor(private createUserService: CreateUserService) {}
 
