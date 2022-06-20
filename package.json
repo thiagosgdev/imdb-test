@@ -11,6 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create ./src/infra/typeorm/migrations/$FILE",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/infra/typeorm/dataSource.ts",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",

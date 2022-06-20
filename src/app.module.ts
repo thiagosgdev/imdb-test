@@ -9,6 +9,7 @@ import envConfig from './configs/env';
 import { UserModule } from './modules/users/user.module';
 import { routerConfig } from './configs/routes';
 import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
+import { MovieModule } from './modules/movies/movie.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
     RouterModule.register(routerConfig),
 
     UserModule,
+    MovieModule,
   ],
   controllers: [],
   providers: [
