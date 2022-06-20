@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
-import { RouterModule } from '@nestjs/core';
+import { APP_GUARD, RouterModule } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
 
+import jwtConfig from './configs/jwt';
 import envConfig from './configs/env';
 import { UserModule } from './modules/users/user.module';
 import { routerConfig } from './configs/routes';
+import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
 
 @Module({
   imports: [
+    JwtModule.registerAsync(jwtConfig()),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: envConfig().dbHost,
@@ -28,6 +32,11 @@ import { routerConfig } from './configs/routes';
     UserModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

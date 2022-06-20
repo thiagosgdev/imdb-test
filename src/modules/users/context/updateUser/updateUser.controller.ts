@@ -20,7 +20,7 @@ import { UserDTO } from '../../dto/user.dto';
 import { UpdateUserService } from './updateUser.service';
 
 @ApiTags('users')
-@Controller('/users')
+@Controller()
 export class UpdateUserController {
   constructor(private updateUserService: UpdateUserService) {}
   @Patch()
