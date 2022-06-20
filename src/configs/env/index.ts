@@ -9,7 +9,7 @@ export default () => {
     jwtRefExpires: process.env.JWT_REFRESH_EXP_IN,
     dbHost: process.env.DB_HOST,
     dbPort: parseInt(process.env.DB_PORT, 5432),
-    dbUser: process.env.DB_USER,
+    dbUser: process.env.DB_USERNAME,
     dbPassword: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME,
     redisPort: process.env.REDIS_PORT,

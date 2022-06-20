@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import envConfig from './configs/env';
+import { UserModule } from './modules/users/user.module';
 
 @Module({
   imports: [
@@ -15,6 +17,11 @@ import envConfig from './configs/env';
       entities: ['dist/**/*.entity.{ts,js}'],
       migrations: ['dist/**/migrations/*.{ts,js}'],
     }),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 20,
+    }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
