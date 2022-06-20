@@ -6,10 +6,21 @@ export const mockUser: UserDTO = {
   id: 'any_id',
   name: 'Test',
   email: 'test@test.com',
-  password: null,
+  password: 'any_password',
   isAdmin: false,
   createdAt: new Date(),
   updatedAt: null,
+  deletedAt: null,
+};
+
+export const mockUpdatedUser: UserDTO = {
+  id: 'any_id',
+  name: 'Updated name',
+  email: 'test@test.com',
+  password: 'any_password',
+  isAdmin: false,
+  createdAt: new Date(),
+  updatedAt: new Date(),
   deletedAt: null,
 };
 
@@ -25,6 +36,5 @@ export const mockCreateUserParamsDTO = (): CreateUserParamsDTO => {
 export const mockUpdateUserParamsDTO = (): UpdateUserParamsDTO => {
   return {
     name: 'updated_name',
-    email: 'updated_email@test.com',
   };
 };
