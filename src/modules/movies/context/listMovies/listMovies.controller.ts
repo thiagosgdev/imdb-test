@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException, Post, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, Query } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
@@ -29,10 +29,8 @@ export class ListMoviesController {
   })
   public async handle(@Query() data: ListMoviesQueryParamsDTO) {
     try {
-      console.log(data);
       return await this.listMoviesService.execute(data);
     } catch (error) {
-      console.log(error);
       throw new HttpException(
         error.response.message,
         error.response.statusCode,

@@ -14,6 +14,7 @@ import { UpdateMovieController } from './context/updateMovie/updateMovie.control
 import { DeleteMovieController } from './context/deleteMovie/deleteMovie.controller';
 import { ListMoviesService } from './context/listMovies/listMovies.service';
 import { ListMoviesController } from './context/listMovies/listMovies.controller';
+import { MovieRepo } from './repositories/movie.repository';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ListMoviesController } from './context/listMovies/listMovies.controller
   ],
   providers: [
     JwtStrategy,
+    MovieRepo,
     CreateMovieService,
     UpdateMovieService,
     DeleteMovieService,
