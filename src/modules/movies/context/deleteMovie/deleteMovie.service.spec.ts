@@ -6,9 +6,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import {
   mockMovie,
   mockUpdatedMovie,
-  mockUpdateMovieParams,
 } from '../../../../shared/tests/movie.mock';
-import { UpdateMovieService } from './updateMovie.service';
+import { DeleteMovieService } from './deleteMovie.service';
 import { Movie } from '../../../../shared/entities/movie.entity';
 
 const mockMovieRepository = {
@@ -20,15 +19,15 @@ const mockMovieRepository = {
   },
 };
 
-describe('Update Movie Service', () => {
-  let service: UpdateMovieService;
+describe('Delete Movie Service', () => {
+  let service: DeleteMovieService;
 
   beforeEach(async () => {
     MockDate.set(new Date());
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        UpdateMovieService,
+        DeleteMovieService,
         {
           provide: getRepositoryToken(Movie),
           useValue: mockMovieRepository,
@@ -36,29 +35,21 @@ describe('Update Movie Service', () => {
       ],
     }).compile();
 
-    service = module.get<UpdateMovieService>(UpdateMovieService);
+    service = module.get<DeleteMovieService>(DeleteMovieService);
   });
 
   it('Should be defined!', () => {
     expect(service).toBeDefined();
   });
-  it('Should return the movie updated on save() success', async () => {
-    const response = await service.execute(
-      'admin',
-      'any_id',
-      mockUpdateMovieParams,
-    );
-    expect(response).toEqual(mockUpdatedMovie);
-  });
 
   it('Should return a UnauthorizedException if the user is not an admin', async () => {
-    const response = service.execute('user', 'any_id', mockUpdateMovieParams);
+    const response = service.execute('user', 'movie_id');
     await expect(response).rejects.toBeInstanceOf(UnauthorizedException);
   });
 
   it('Should return a NotFoundException if the movie is not found', async () => {
     jest.spyOn(mockMovieRepository, 'findOne').mockResolvedValueOnce(null);
-    const response = service.execute('admin', 'any_id', mockUpdateMovieParams);
+    const response = service.execute('admin', 'movie_id');
     await expect(response).rejects.toBeInstanceOf(NotFoundException);
   });
 });
