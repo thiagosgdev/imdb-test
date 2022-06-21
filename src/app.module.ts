@@ -10,6 +10,7 @@ import { UserModule } from './modules/users/user.module';
 import { routerConfig } from './configs/routes';
 import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
 import { MovieModule } from './modules/movies/movie.module';
+import { VoteModule } from './modules/votes/vote.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { MovieModule } from './modules/movies/movie.module';
 
     UserModule,
     MovieModule,
+    VoteModule,
   ],
   controllers: [],
   providers: [
