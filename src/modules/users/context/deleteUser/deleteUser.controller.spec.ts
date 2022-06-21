@@ -28,7 +28,7 @@ describe('Delete User Controller', () => {
   it('Should call Delete User Service with the correct value', async () => {
     const executeSpy = jest.spyOn(service, 'execute');
     await controller.handle(mockRequest);
-    expect(executeSpy).toHaveBeenCalledWith('any_id');
+    expect(executeSpy).toHaveBeenCalledWith('any_user_id');
   });
 
   it('Should throw if Delete User Service throws', async () => {

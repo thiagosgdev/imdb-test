@@ -39,7 +39,7 @@ describe('Update User Controller', () => {
     await controller.handle(mockUpdateUserParamsDTO(), mockRequest);
     expect(executeSpy).toHaveBeenCalledWith(
       mockUpdateUserParamsDTO(),
-      'any_id',
+      'any_user_id',
     );
   });
 
