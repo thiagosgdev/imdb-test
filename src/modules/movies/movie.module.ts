@@ -12,6 +12,8 @@ import { UpdateMovieService } from './context/updateMovie/updateMovie.service';
 import { DeleteMovieService } from './context/deleteMovie/deleteMovie.service';
 import { UpdateMovieController } from './context/updateMovie/updateMovie.controller';
 import { DeleteMovieController } from './context/deleteMovie/deleteMovie.controller';
+import { ListMoviesService } from './context/listMovies/listMovies.service';
+import { ListMoviesController } from './context/listMovies/listMovies.controller';
 
 @Module({
   imports: [
@@ -24,11 +26,13 @@ import { DeleteMovieController } from './context/deleteMovie/deleteMovie.control
     CreateMovieService,
     UpdateMovieService,
     DeleteMovieService,
+    ListMoviesService,
   ],
   controllers: [
     CreateMovieController,
     UpdateMovieController,
     DeleteMovieController,
+    ListMoviesController,
   ],
   exports: [TypeOrmModule],
 })

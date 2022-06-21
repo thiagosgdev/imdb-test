@@ -5,7 +5,7 @@ import { MovieGenre } from '../../../shared/enums/movieGenre.enum';
 
 export class MovieDTO {
   @ApiProperty({
-    example: '',
+    example: 'b5a43dc2-cb78-4bf0-ba6d-ef69d52527eb',
   })
   id: string;
 
@@ -35,19 +35,16 @@ export class MovieDTO {
   })
   genre: string;
 
-  @IsDate()
   @ApiProperty({
     example: new Date(),
   })
   createdAt: Date;
 
-  @IsDate()
   @ApiProperty({
     example: null,
   })
   updatedAt: Date;
 
-  @IsDate()
   @ApiProperty({
     example: null,
   })
