@@ -5,7 +5,9 @@ import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { CreateMovieParamsDTO } from '../../dto/createMovieParams.dto';
 import { MovieDTO } from '../../dto/movie.dto';
 import { CreateMovieService } from './createMovie.service';
-
+import { Role } from '../../../../shared/enums/role.enum';
+import { Roles } from '../../../../shared/decorators/role.decorator';
+@Roles(Role.Admin)
 @ApiTags('movies')
 @Controller()
 export class CreateMovieController {

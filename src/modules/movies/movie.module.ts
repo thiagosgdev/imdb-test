@@ -8,6 +8,10 @@ import { JwtStrategy } from '../../shared/providers/EncryptProvider/jwt.strategy
 import { Movie } from '../../shared/entities/movie.entity';
 import { CreateMovieController } from './context/createMovie/createMovie.controller';
 import { CreateMovieService } from './context/createMovie/createMovie.service';
+import { UpdateMovieService } from './context/updateMovie/updateMovie.service';
+import { DeleteMovieService } from './context/deleteMovie/deleteMovie.service';
+import { UpdateMovieController } from './context/updateMovie/updateMovie.controller';
+import { DeleteMovieController } from './context/deleteMovie/deleteMovie.controller';
 
 @Module({
   imports: [
@@ -15,8 +19,17 @@ import { CreateMovieService } from './context/createMovie/createMovie.service';
     TypeOrmModule.forFeature([Movie]),
     PassportModule,
   ],
-  providers: [JwtStrategy, CreateMovieService],
-  controllers: [CreateMovieController],
+  providers: [
+    JwtStrategy,
+    CreateMovieService,
+    UpdateMovieService,
+    DeleteMovieService,
+  ],
+  controllers: [
+    CreateMovieController,
+    UpdateMovieController,
+    DeleteMovieController,
+  ],
   exports: [TypeOrmModule],
 })
 export class MovieModule {}
