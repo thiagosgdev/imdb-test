@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
+import { Vote } from './vote.entity';
 
 @Unique(['email'])
 @Entity('users')
@@ -25,6 +27,9 @@ export class User {
 
   @Column({ name: 'is_admin' })
   isAdmin: boolean;
+
+  @OneToMany(() => Vote, (votes) => votes.users)
+  votes?: Vote[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { MovieGenre } from '../enums/movieGenre.enum';
+import { Vote } from './vote.entity';
 
 @Entity('movies')
 export class Movie {
@@ -28,6 +30,9 @@ export class Movie {
 
   @Column()
   director: string;
+
+  @OneToMany(() => Vote, (votes) => votes.movies)
+  votes?: Vote[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
