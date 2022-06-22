@@ -1,5 +1,5 @@
-import { ActorDTO } from 'src/modules/actors/dto/actor.dto';
-import { CreateActorParamsDTO } from 'src/modules/actors/dto/createActorParams.dto';
+import { ActorDTO } from '../../modules/actors/dto/actor.dto';
+import { CreateActorParamsDTO } from '../../modules/actors/dto/createActorParams.dto';
 
 export const mockActor: ActorDTO = {
   id: 'any_id',
