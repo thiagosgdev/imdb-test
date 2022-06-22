@@ -1,6 +1,7 @@
 import { VoteModule } from '../../modules/votes/vote.module';
 import { MovieModule } from '../../modules/movies/movie.module';
 import { UserModule } from '../../modules/users/user.module';
+import { ActorModule } from 'src/modules/actors/actors.module';
 
 export const routerConfig = [
   {
@@ -14,5 +15,9 @@ export const routerConfig = [
   {
     path: '/votes',
     module: VoteModule,
+  },
+  {
+    path: '/actors',
+    module: ActorModule,
   },
 ];

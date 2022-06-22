@@ -11,6 +11,7 @@ import { routerConfig } from './configs/routes';
 import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
 import { MovieModule } from './modules/movies/movie.module';
 import { VoteModule } from './modules/votes/vote.module';
+import { ActorModule } from './modules/actors/actors.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { VoteModule } from './modules/votes/vote.module';
     UserModule,
     MovieModule,
     VoteModule,
+    ActorModule,
   ],
   controllers: [],
   providers: [

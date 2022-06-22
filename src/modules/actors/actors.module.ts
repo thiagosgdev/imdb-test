@@ -1,20 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
 
-import jwtConfig from '../../configs/jwt';
-import { JwtStrategy } from '../../shared/providers/EncryptProvider/jwt.strategy';
 import { Actor } from '../../shared/entities/actor.entity';
+import { CreateActorController } from './context/createActor/createActor.controller';
+import { ListActorsController } from './context/listActors/listActors.controller';
+import { CreateActorService } from './context/createActor/createActor.service';
+import { ListActorsService } from './context/listActors/listActors.service';
 
 @Module({
-  imports: [
-    JwtModule.registerAsync(jwtConfig()),
-    TypeOrmModule.forFeature([Actor]),
-    PassportModule,
-  ],
-  providers: [JwtStrategy],
-  controllers: [],
+  imports: [TypeOrmModule.forFeature([Actor])],
+  providers: [CreateActorService, ListActorsService],
+  controllers: [CreateActorController, ListActorsController],
   exports: [TypeOrmModule],
 })
 export class ActorModule {}

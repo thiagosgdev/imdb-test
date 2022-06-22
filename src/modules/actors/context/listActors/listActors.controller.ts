@@ -1,15 +1,17 @@
-import { Controller, HttpException, Post } from '@nestjs/common';
+import { Controller, Get, HttpException } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
+import { Public } from '../../../../shared/decorators/public.decorator';
 import { ActorDTO } from '../../dto/actor.dto';
 import { ListActorsService } from './listActors.service';
 
+@Public()
 @ApiTags('actors')
 @Controller()
 export class ListActorsController {
   constructor(private listActorsService: ListActorsService) {}
 
-  @Post()
+  @Get('/list')
   @ApiOkResponse({
     type: ActorDTO,
   })
