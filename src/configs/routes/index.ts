@@ -1,7 +1,8 @@
 import { VoteModule } from '../../modules/votes/vote.module';
 import { MovieModule } from '../../modules/movies/movie.module';
 import { UserModule } from '../../modules/users/user.module';
-import { ActorModule } from 'src/modules/actors/actors.module';
+import { ActorModule } from '../../modules/actors/actors.module';
+import { CastModule } from '../../modules/casts/casts.module';
 
 export const routerConfig = [
   {
@@ -19,5 +20,9 @@ export const routerConfig = [
   {
     path: '/actors',
     module: ActorModule,
+  },
+  {
+    path: '/casts',
+    module: CastModule,
   },
 ];

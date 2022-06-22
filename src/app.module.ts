@@ -12,6 +12,7 @@ import { JwtAuthGuard } from './shared/providers/EncryptProvider/jwtAuth.guard';
 import { MovieModule } from './modules/movies/movie.module';
 import { VoteModule } from './modules/votes/vote.module';
 import { ActorModule } from './modules/actors/actors.module';
+import { CastModule } from './modules/casts/casts.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { ActorModule } from './modules/actors/actors.module';
     MovieModule,
     VoteModule,
     ActorModule,
+    CastModule,
   ],
   controllers: [],
   providers: [
