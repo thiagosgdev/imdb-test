@@ -1,9 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsBoolean,
   IsEmail,
   IsNotEmpty,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -45,12 +43,4 @@ export class CreateUserParamsDTO {
     example: 'randomPassword',
   })
   passwordConfirmation: string;
-
-  @IsBoolean()
-  @IsOptional()
-  @ApiProperty({
-    required: false,
-    example: true,
-  })
-  isAdmin?: boolean;
 }
