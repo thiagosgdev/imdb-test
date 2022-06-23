@@ -1,0 +1,37 @@
+version: "3.3"
+
+services:
+  
+  database_imdb:
+    image: postgres
+    container_name: database_imdb
+    restart: always
+    ports: 
+      - "65435:5432"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - pgdata:/data/postgres    
+    env_file:
+      - .env
+  app_imdb:
+    build: .
+    container_name: app_imdb
+    restart: always
+    ports: 
+      - ${PORT}:${PORT}   
+    volumes: 
+      - .:/usr/app
+      - /usr/app/node_modules 
+    links:       
+      - database_imdb
+    depends_on:      
+      - database_imdb
+    env_file:
+      - .env 
+
+volumes:
+  pgdata:
+    driver: local
