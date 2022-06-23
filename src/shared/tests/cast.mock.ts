@@ -24,7 +24,7 @@ export const mockCastList: CastDTO[] = [
   {
     id: 'another_cast_id',
     actorId: 'another_actor_id',
-    movieId: 'another_movie_id',
+    movieId: 'any_movie_id',
     role: 'another_role',
     createdAt: new Date(),
     updatedAt: null,
