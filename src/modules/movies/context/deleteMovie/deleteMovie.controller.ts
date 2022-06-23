@@ -11,6 +11,7 @@ import { Role } from '../../../../shared/enums/role.enum';
 import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { Roles } from '../../../../shared/decorators/role.decorator';
 import { DeleteMovieService } from './deleteMovie.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @Roles(Role.Admin)
 @ApiTags('movies')
@@ -19,6 +20,7 @@ export class DeleteMovieController {
   constructor(private deleteMovieService: DeleteMovieService) {}
 
   @Delete()
+  @ApiCommomDecorators()
   @ApiBadRequestResponse({
     description: 'This will be returned when has validation error',
   })

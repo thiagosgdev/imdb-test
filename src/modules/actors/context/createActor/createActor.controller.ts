@@ -7,6 +7,7 @@ import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { ActorDTO } from '../../dto/actor.dto';
 import { CreateActorParamsDTO } from '../../dto/createActorParams.dto';
 import { CreateActorService } from './createActor.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @Roles(Role.Admin)
 @ApiTags('actors')
@@ -15,6 +16,7 @@ export class CreateActorController {
   constructor(private createActorService: CreateActorService) {}
 
   @Post()
+  @ApiCommomDecorators()
   @ApiOkResponse({
     type: ActorDTO,
   })

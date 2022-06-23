@@ -10,6 +10,7 @@ import { ApiNoContentResponse, ApiTags } from '@nestjs/swagger';
 
 import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { DeleteUserService } from './deleteUser.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @ApiTags('users')
 @Controller()
@@ -18,6 +19,7 @@ export class DeleteUserController {
 
   @Delete()
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiCommomDecorators()
   @ApiNoContentResponse({
     description: 'User deleted.',
   })

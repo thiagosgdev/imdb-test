@@ -10,6 +10,7 @@ import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { CreateVoteParamsDTO } from '../../dto/createVoteParams.dto';
 import { VoteDTO } from '../../dto/vote.dto';
 import { CreateVoteService } from './createVote.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @ApiTags('votes')
 @Controller()
@@ -17,6 +18,7 @@ export class CreateVoteController {
   constructor(private createVoteService: CreateVoteService) {}
 
   @Post()
+  @ApiCommomDecorators()
   @ApiOkResponse({
     type: VoteDTO,
   })

@@ -12,6 +12,7 @@ import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { MovieDTO } from '../../dto/movie.dto';
 import { UpdateMovieParamsDTO } from '../../dto/updateMovieParams.dto';
 import { UpdateMovieService } from './updateMovie.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @ApiTags('movies')
 @Controller()
@@ -19,6 +20,7 @@ export class UpdateMovieController {
   constructor(private updateMovieService: UpdateMovieService) {}
 
   @Patch('/:id')
+  @ApiCommomDecorators()
   @ApiOkResponse({
     type: MovieDTO,
   })

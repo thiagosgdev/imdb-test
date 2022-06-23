@@ -13,6 +13,7 @@ import { Role } from '../../../../shared/enums/role.enum';
 import { CreateUserParamsDTO } from '../../dto/createUserParams.dto';
 import { UserDTO } from '../../dto/user.dto';
 import { CreateAdminService } from './createAdmin.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @Roles(Role.Admin)
 @ApiTags('users')
@@ -21,6 +22,7 @@ export class CreateAdminController {
   constructor(private createAdminService: CreateAdminService) {}
 
   @Post()
+  @ApiCommomDecorators()
   @ApiCreatedResponse({
     description: 'The user object will be returned',
     type: UserDTO,

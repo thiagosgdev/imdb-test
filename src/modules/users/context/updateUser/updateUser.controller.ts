@@ -18,6 +18,7 @@ import { RequestDTO } from '../../../../shared/dto/request.dto';
 import { UpdateUserParamsDTO } from '../../dto/updateUserParams.dto';
 import { UserDTO } from '../../dto/user.dto';
 import { UpdateUserService } from './updateUser.service';
+import { ApiCommomDecorators } from '../../../../shared/decorators/globalDoc.decorator';
 
 @ApiTags('users')
 @Controller()
@@ -25,6 +26,7 @@ export class UpdateUserController {
   constructor(private updateUserService: UpdateUserService) {}
   @Patch()
   @HttpCode(HttpStatus.OK)
+  @ApiCommomDecorators()
   @ApiOkResponse({
     type: UserDTO,
   })
