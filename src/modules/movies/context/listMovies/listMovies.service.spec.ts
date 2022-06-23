@@ -1,15 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import MockDate from 'mockdate';
-import { NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { getRepositoryToken } from '@nestjs/typeorm';
+import { NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import {
   mockListMoviesQueryParamsDTO,
   mockMoviesList,
 } from '../../../../shared/tests/movie.mock';
-import { Movie } from '../../../../shared/entities/movie.entity';
 import { ListMoviesService } from './listMovies.service';
+import { MovieRepo } from '../../repositories/movie.repository';
 
 const mockMovieRepository = {
   listMovies: () => {
@@ -27,7 +26,7 @@ describe('List Movies Service', () => {
       providers: [
         ListMoviesService,
         {
-          provide: getRepositoryToken(Movie),
+          provide: MovieRepo,
           useValue: mockMovieRepository,
         },
         {

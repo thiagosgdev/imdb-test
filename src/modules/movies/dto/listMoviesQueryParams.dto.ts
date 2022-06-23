@@ -28,4 +28,12 @@ export class ListMoviesQueryParamsDTO {
     example: 'ACTION',
   })
   genre?: MovieGenre;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    required: false,
+    example: 'John',
+  })
+  actor?: string;
 }

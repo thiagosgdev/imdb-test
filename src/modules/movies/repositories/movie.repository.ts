@@ -13,16 +13,35 @@ export class MovieRepo {
     private readonly repository: Repository<Movie>,
   ) {}
   async listMovies(data: ListMoviesQueryParamsDTO): Promise<MovieDTO[]> {
-    const query = this.repository.createQueryBuilder('movies').select();
+    const query = this.repository
+      .createQueryBuilder('movies')
+      .select()
+      .addSelect('AVG(votes.score)', 'voteAverage')
+      .leftJoinAndSelect('movies.votes', 'votes')
+      .leftJoinAndSelect('movies.casts', 'casts')
+      .leftJoin('casts.actors', 'actors')
+      .loadRelationCountAndMap('movies.votesCount', 'movies.votes')
+      .addGroupBy('movies.id')
+      .addGroupBy('votes.id')
+      .addGroupBy('casts.id');
 
     if (data.name)
-      query.where('name LIKE :name', { name: '%' + data.name + '%' });
-    if (data.genre) query.andWhere('genre = :genre', { genre: data.genre });
-    if (data.director)
-      query.andWhere('director LIKE :director', {
+      query.where('movies.name LIKE :name', { name: '%' + data.name + '%' });
+
+    if (data.genre)
+      query.andWhere('movies.genre = :genre', { genre: data.genre });
+
+    if (data.director) {
+      query.andWhere('movies.director LIKE :director', {
         director: '%' + data.director + '%',
       });
+    }
 
+    if (data.actor) {
+      query.andWhere('actors.name LIKE :actor', {
+        actor: '%' + data.actor + '%',
+      });
+    }
     return query.getMany();
   }
 }
