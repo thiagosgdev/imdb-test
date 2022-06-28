@@ -26,6 +26,7 @@ import { CastModule } from './modules/casts/casts.module';
       database: envConfig().dbName,
       entities: ['dist/**/*.entity.{ts,js}'],
       migrations: ['dist/**/migrations/*.{ts,js}'],
+      ssl: { rejectUnauthorized: false },
     }),
     ThrottlerModule.forRoot({
       ttl: 60,

@@ -12,6 +12,6 @@ export default () => {
     dbUser: process.env.DB_USERNAME,
     dbPassword: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME,
-    redisPort: process.env.REDIS_PORT,
+    dbSSL: Boolean(process.env.DB_SSL),
   };
 };
