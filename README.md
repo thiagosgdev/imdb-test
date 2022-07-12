@@ -1,23 +1,30 @@
-### Usando Docker
+## About
 
-    - Após clonar o repositório em algum diretório em seu computador, abra um terminal e vá até a pasta em que se encontra o repositório.
-    - No terminal rode o comando para instalar as dependencias:
-        - yarn
-    - Renomeie o arquivo .env.example para .env e coloque as váriaveis de ambiente de acordo com sua preferência.
-    - Execute o comando docker-compose up --build para montar os containers, rodar as migrations e a aplicação.
-    - Abra um novo terminal na pasta do repositório se preferir, e execute os comandos: docker exec -it app_imdb yarn seed:admin e docker exec -it app_imdb yarn seed:users  para popular o banco de dados
-    - Caso de algum erro, tente rodar a aplicação localmente por favor ou entre em contato comigo por e-mail ou  telegram se preferir.
+This API manages gives the users the opportunity to sign in, list movies and score how much they liked the movie. The movie management has to be done by an admin. Most of the routes are guarded, and the user has to provide a JWT Token in the request Header.
 
-### Usando localmente
+## Project Structure
 
-    - Após clonar o repositório em algum diretório em seu computador, abra um terminal e vá até a pasta em que se encontra o repositório.
-    - No terminal rode o comando para instalar as dependencias:
-        - yarn
-    - Renomei o arquivo .env.example para .env e coloque as váriaveis de ambiente de acordo com sua preferência.
-    - Altere o campo "host" no arquivo ormconfig.json para "localhost"
-    - No terminal rode os comandos:
-        - Para criar o banco de dados: yarn seed:database
-        - Para criar as tabelas: yarn migration:run
-        - Para criar os usuarios: yarn seed:users
-        - Para popular o banco de dados: yarn seed:data
-        - Para rodar a aplicação: yarn start:dev ou yarn start
+I tried to keep as close as I can to a Clean Archtecture Pattern. Every module has a context folder that keeps the service, controller and unit tests for a single use case. The infra folder keeps the DB implementation and the shared folder the entities and code used by more than one use case.
+
+## Running the project
+
+### Docker
+
+- After you clone the repository, open the terminal and navigate to the local repository folder.
+- On the terminal, type the command yarn to install all dependencies
+- Rename the file .env.example to .env and fill all the environment variables.
+- On the terminal, type the command docker-compose up --build to build the containers, run the migrations and the application.
+- Open a new terminal window to run the commands docker exec -it app_imdb yarn seed:admin e docker exec -it app_imdb yarn seed:users to seed the DB.
+- If any error happens please try to run the application locally.
+
+### Locally
+
+- After you clone the repository, open the terminal and navigate to the local repository folder.
+- On the terminal, type the command yarn to install all dependencies
+- Rename the file .env.example to .env and fill all the environment variables.
+- On the terminal, run the commands:
+
+## Stack
+
+Nestjs
+Posgres
